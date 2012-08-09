@@ -72,6 +72,7 @@ void add_to_list(char_list *list, char c)
 
 void print_char_list(char_list *list)
 {
+    replace_elements(list->head->next, list->last->prev);
     printf("\nChar\tCount\tFrequence\n");
     element_of_char_list *element = list->head;
     while((element = element->next) != list->last)
@@ -91,15 +92,22 @@ void print_char_list(char_list *list)
         temp_elem = element;
     }
 }
-
+*/
 
 void replace_elements(element_of_char_list *a, element_of_char_list *b)
 {
-    element_of_char_list *temp = a;
+    element_of_char_list *temp_next = a->next;
+    element_of_char_list *temp_prev = a->prev;
     a->next->prev = b;
     a->prev->next = b;
     b->next->prev = a;
     b->prev->next = a;
+    temp_next = a->next;
+    temp_prev = a->prev;
+    a->next = b->next;
+    a->prev = b->prev;
+    b->next = temp_next;
+    b->prev = temp_prev;
 
 }
-*/
+

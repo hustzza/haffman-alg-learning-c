@@ -72,6 +72,7 @@ void add_to_list(char_list *list, char c)
 
 void print_char_list(char_list *list)
 {
+    //char_list_sort(list);
     replace_elements(list->head->next, list->last->prev);
     printf("\nChar\tCount\tFrequence\n");
     element_of_char_list *element = list->head;
@@ -84,30 +85,37 @@ void print_char_list(char_list *list)
             printf("%c\t%d\t%1.7f\n", element->c, element->count, element->freq);
 }
 
-/* void char_list_sort(char_list *list)
+/*
+void char_list_sort(char_list *list)
 {
-    *element = list->head;
-    while((element = list->head->next) != list->last)
+    element_of_char_list *element = list->head;
+    while((element = element->next) != list->last->prev)
     {
-        temp_elem = element;
+        element_of_char_list *temp_elem = list->head;
+        while((temp_elem = temp_elem->next) != element)
+            if (temp_elem->freq > temp_elem->next->freq)
+                replace_elements(temp_elem, temp_elem->next);
     }
 }
 */
 
 void replace_elements(element_of_char_list *a, element_of_char_list *b)
 {
-    element_of_char_list *temp_next = a->next;
-    element_of_char_list *temp_prev = a->prev;
-    a->next->prev = b;
-    a->prev->next = b;
-    b->next->prev = a;
-    b->prev->next = a;
-    temp_next = a->next;
-    temp_prev = a->prev;
-    a->next = b->next;
-    a->prev = b->prev;
-    b->next = temp_next;
-    b->prev = temp_prev;
+    if (a->next != b && b->next != a)
+    {
+        element_of_char_list *temp_next = a->next;
+        element_of_char_list *temp_prev = a->prev;
+        a->next->prev = b;
+        a->prev->next = b;
+        b->next->prev = a;
+        b->prev->next = a;
+        temp_next = a->next;
+        temp_prev = a->prev;
+        a->next = b->next;
+        a->prev = b->prev;
+        b->next = temp_next;
+        b->prev = temp_prev;
+    }
 
 }
 

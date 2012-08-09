@@ -1,4 +1,3 @@
-#include "main.h"
 #include "text.h"
 #include "char_list.h"
 

@@ -4,13 +4,13 @@
 
 struct _queue {
     char c;
-    struct _queue *next;
-    struct _queue *prev;
+    queue *next;
+    queue *prev;
 };
 
 struct _text {
-    struct _queue *head;
-    struct _queue *last;
+    queue *head;
+    queue *last;
 };
 
 void get_text(text *txt)

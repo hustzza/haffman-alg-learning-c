@@ -8,14 +8,14 @@ struct _element_of_char_list {
     char c;
     int count;
     double freq;
-    struct _element_of_char_list *next;
-    struct _element_of_char_list *prev;
+    element_of_char_list *next;
+    element_of_char_list *prev;
 };
 
 struct _char_list {
     int length;
-    struct _element_of_char_list *head;
-    struct _element_of_char_list *last;
+    element_of_char_list *head;
+    element_of_char_list *last;
 };
 
 
@@ -82,3 +82,24 @@ void print_char_list(char_list *list)
         else
             printf("%c\t%d\t%1.7f\n", element->c, element->count, element->freq);
 }
+
+/* void char_list_sort(char_list *list)
+{
+    *element = list->head;
+    while((element = list->head->next) != list->last)
+    {
+        temp_elem = element;
+    }
+}
+
+
+void replace_elements(element_of_char_list *a, element_of_char_list *b)
+{
+    element_of_char_list *temp = a;
+    a->next->prev = b;
+    a->prev->next = b;
+    b->next->prev = a;
+    b->prev->next = a;
+
+}
+*/

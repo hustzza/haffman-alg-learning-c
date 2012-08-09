@@ -73,7 +73,6 @@ void add_to_list(char_list *list, char c)
 void print_char_list(char_list *list)
 {
     //char_list_sort(list);
-    swap_elements(list->head->next, list->last->prev);
     printf("\nChar\tCount\tFrequence\n");
     element_of_char_list *element = list->head;
     while((element = element->next) != list->last)
@@ -116,7 +115,22 @@ void swap_elements(element_of_char_list *a, element_of_char_list *b)
         b->next = temp_next;
         b->prev = temp_prev;
     } else {
-        a->prev->next = b;
+        if (a->next == b)
+        {
+            a->next = b->next;
+            b->prev = a->prev;
+            a->prev = b;
+            b->next = a;
+            b->prev->next = b;
+            a->next->prev = a;
+        } else {
+            b->next = a->next;
+            a->prev = b->prev;
+            b->prev = a;
+            a->next = b;
+            a->prev->next = a;
+            b->next->prev = b;
+        }
 
     }
 
